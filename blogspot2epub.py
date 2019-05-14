@@ -37,6 +37,17 @@ class WWWDownloader:
 
 
 def download_web_page(url, forceDownload = False):
+    if "?" not in url:
+        url = url + '?'
+
+    if "m=1" not in url:
+        url = url + '&m=1'
+
+    if "=" in url:
+        url = url + '&'
+
+    url = url + 'interstitial=ABqL8_i0e_BwlzRFseFTZ8R87wtGJry9zTOahODtckxhFV1Lxl_YC4XHCCQYGebe'
+
     m = hashlib.md5()
     m.update(url)
     url_hash = m.hexdigest()
@@ -309,7 +320,8 @@ all_image_files = []
 while BLOG_URL != '':
     www_html = download_web_page(BLOG_URL, True)
     artykuly = re.findall(
-        "<h3 class='post-title entry-title' itemprop='name'>[\s]*<a href='([^']*)'>([^>^<]*)</a>[\s]*</h3>", www_html)
+        "<a href='([^']*)'>[\s]*<h3 class='mobile-index-title entry-title' itemprop='name'>[\s]*([^>^<]*)[\s]*</h3>", www_html)
+        # "<h3 class='post-title entry-title' itemprop='name'>[\s]*<a href='([^']*)'>([^>^<]*)</a>[\s]*</h3>", www_html)
     if x == 1:
         BLOG_LANGUAGE = get_blog_language(www_html, BLOG_LANGUAGE)
         title = re.search("<title>([^>^<]*)</title>", www_html).group(1).strip().decode('utf-8')
