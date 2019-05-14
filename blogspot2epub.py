@@ -346,7 +346,7 @@ while BLOG_URL != '':
                 if acc == u'Usuń': tag = u'h3'
             c = epub.EpubHtml(title=art_title, file_name='chap_' + str(x) + '.xhtml', lang='pl')
             # Post title:
-            c.content = u'<h2>' + art_title + u'</h2>' + art_date + u'<p><i>' + art[0] + u'</i></p>'
+            c.content = u'<h2>' + art_title + u'</h2>' + str(art_date) + u'<p><i>' + art[0] + u'</i></p>'
             # Images:
             image_files = []
             images = re.findall(
