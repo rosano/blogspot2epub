@@ -46,7 +46,7 @@ def download_web_page(url, forceDownload = False):
     if "=" in url:
         url = url + '&'
 
-    url = url + 'interstitial=ABqL8_i0e_BwlzRFseFTZ8R87wtGJry9zTOahODtckxhFV1Lxl_YC4XHCCQYGebe'
+    url = url.replace('&amp;', '&') + 'interstitial=ABqL8_i0e_BwlzRFseFTZ8R87wtGJry9zTOahODtckxhFV1Lxl_YC4XHCCQYGebe'
 
     m = hashlib.md5()
     m.update(url)
